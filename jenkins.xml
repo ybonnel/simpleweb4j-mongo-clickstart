@@ -84,7 +84,7 @@
                             <com.cloudbees.plugins.deployer.impl.run.RunTargetImpl>
                                 <artifact class="com.cloudbees.plugins.deployer.sources.MavenArtifactDeploySource">
                                     <groupId>com.mycompany</groupId>
-                                    <artifactId>${applicationName}</artifactId>
+                                    <artifactId>simpleweb4j-clisckstart</artifactId>
                                     <classifier>jar-with-dependencies</classifier>
                                     <type>jar</type>
                                 </artifact>
