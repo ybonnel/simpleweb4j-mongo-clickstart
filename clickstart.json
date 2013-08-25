@@ -1,0 +1,21 @@
+{
+    "id": "simpleweb4j-clickstart",
+    "name": "SimpleWeb4j clickstart",
+    "source": "github",
+    "description" : "Deploy a SimpleWeb4j application on CloudBees with continuous deployment (beta)",
+    "icon" : "todo",    
+
+    "supported-by" : "community",
+    "order" : 0,
+
+    "runtime": {
+        "type": "java",
+    },
+    "build-with-jenkins": {
+	      "template": {
+            "type": "https://raw.github.com/ndeloof/simpleweb4j-clickstart/master/jenkins.xml",
+            "options": {
+            }            
+        }
+    }
+}
