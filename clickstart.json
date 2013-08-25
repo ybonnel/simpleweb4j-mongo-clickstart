@@ -12,7 +12,7 @@
         "type": "java",
         "app-parameters" : { 
             "runtime.java_version": "1.7",
-            "class": "com.mycompany.Main"
+            "runtime.class": "com.mycompany.Main"
         }
         
     },
