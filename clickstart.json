@@ -10,6 +10,11 @@
 
     "runtime": {
         "type": "java",
+        "app-parameters" : { 
+            "runtime.java_version": "1.7",
+            "class":"com.mycompany.Main"
+        },
+        
     },
     "build-with-jenkins": {
 	      "template": {
