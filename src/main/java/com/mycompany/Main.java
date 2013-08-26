@@ -10,6 +10,12 @@ import static fr.ybonnel.simpleweb4j.SimpleWeb4j.*;
  */
 public class Main {
 
+    private static boolean dev = true;
+
+    public static boolean isDev() {
+        return dev;
+    }
+
     /**
      * Start the server.
      * @param port http port to listen.
@@ -20,6 +26,12 @@ public class Main {
         setPort(port);
         // Set the path to static resources.
         setPublicResourcesPath("/com/mycompany/public");
+
+        if (isDev()) {
+            setHibernateCfgPath("/com/mycompany/config/hibernate.cfg-dev.xml");
+        } else {
+            setHibernateCfgPath("/com/mycompany/config/hibernate.cfg-prod.xml");
+        }
 
         setEntitiesClasses(Beer.class);
 
@@ -35,12 +47,14 @@ public class Main {
         // Heroku
         String herokuPort = System.getenv("PORT");
         if (herokuPort != null) {
+            dev = false;
             return Integer.parseInt(herokuPort);
         }
 
         // Cloudbees
         String cloudbeesPort = System.getProperty("app.port");
         if (cloudbeesPort != null) {
+            dev = false;
             return Integer.parseInt(cloudbeesPort);
         }
 
