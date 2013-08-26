@@ -1,5 +1,8 @@
 package com.mycompany;
 
+import com.mycompany.model.Beer;
+import com.mycompany.services.BeerRessource;
+
 import static fr.ybonnel.simpleweb4j.SimpleWeb4j.*;
 
 /**
@@ -16,7 +19,11 @@ public class Main {
         // Set the http port.
         setPort(port);
         // Set the path to static resources.
-        setPublicResourcesPath("/public");
+        setPublicResourcesPath("/com/mycompany/public");
+
+        setEntitiesClasses(Beer.class);
+
+        resource(new BeerRessource("/beer"));
         // Start the server.
         start(waitStop);
     }
