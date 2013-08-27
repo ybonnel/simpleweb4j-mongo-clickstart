@@ -1,6 +1,6 @@
 #  SimpleWeb4j clickstart
 
-This clickstart setup a continuous deployment application based on SimpleWeb4j with MongoDB.
+This clickstart setup a continuous deployment application based on [SimpleWeb4j](https://github.com/ybonnel/SimpleWeb4j) with MongoDB.
 
 Sample contains a complete Beer CRUD application with test for services (backend) and test for GUI (with fluentlenium and phantomjs).
 
