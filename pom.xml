@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mycompany</groupId>
-    <artifactId>simpleweb4j-clisckstart</artifactId>
+    <artifactId>simpleweb4j-mongo-clickstart</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -56,6 +56,7 @@
                         <configuration>
                             <portNames>
                                 <portName>test.http.port</portName>
+								<portName>test.mongo.port</portName>
                             </portNames>
                         </configuration>
                     </execution>
@@ -66,7 +67,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${plugin.surefire.version}</version>
                 <configuration>
-                    <argLine>-Dtest.http.port=${test.http.port}</argLine>
+                    <argLine>-Dtest.http.port=${test.http.port} -Dtest.mongo.port=${test.mongo.port}</argLine>
                 </configuration>
             </plugin>
             <plugin>
