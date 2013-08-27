@@ -62,6 +62,7 @@ public class BeerWebTest extends SimpleWeb4jTest {
         await().atMost(3, TimeUnit.SECONDS).until("#beers").isNotPresent();
         fill("#name").with(nameOfBeer);
         click("#submit");
+        await().atMost(3, TimeUnit.SECONDS).until("#beers").isPresent();
     }
 
     @Test
@@ -81,6 +82,7 @@ public class BeerWebTest extends SimpleWeb4jTest {
         clear("#name");
         fill("#name").with("newName");
         click("#submit");
+        await().atMost(3, TimeUnit.SECONDS).until("#beers").isPresent();
         FluentList<FluentWebElement> trInTbody = find("tbody tr");
         assertThat(trInTbody).hasSize(1);
         FluentWebElement oneBeer = trInTbody.get(0);
