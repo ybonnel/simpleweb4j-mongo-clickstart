@@ -1,26 +1,21 @@
 package com.mycompany.model;
 
 
-import fr.ybonnel.simpleweb4j.model.SimpleEntityManager;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import org.bson.types.ObjectId;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
 public class Beer {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+    private String id;
 
     private String name;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -32,5 +27,22 @@ public class Beer {
         this.name = name;
     }
 
-    public static SimpleEntityManager<Beer, Long> simpleEntityManager = new SimpleEntityManager<>(Beer.class);
+    public static Beer fromDbObject(DBObject object) {
+        if (object == null) {
+            return null;
+        }
+        Beer beer = new Beer();
+        beer.setId(object.get("_id").toString());
+        beer.setName(object.get("name").toString());
+        return beer;
+    }
+
+    public DBObject toDbObject() {
+        DBObject object = new BasicDBObject();
+        if (id != null) {
+            object.put("_id", new ObjectId(id));
+        }
+        object.put("name", name);
+        return object;
+    }
 }

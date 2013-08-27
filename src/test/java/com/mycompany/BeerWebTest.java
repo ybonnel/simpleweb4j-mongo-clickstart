@@ -1,8 +1,13 @@
 package com.mycompany;
 
 
-import com.mycompany.model.Beer;
-import fr.ybonnel.simpleweb4j.model.SimpleEntityManager;
+import de.flapdoodle.embed.mongo.MongodExecutable;
+import de.flapdoodle.embed.mongo.MongodProcess;
+import de.flapdoodle.embed.mongo.MongodStarter;
+import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
+import de.flapdoodle.embed.mongo.config.Net;
+import de.flapdoodle.embed.mongo.distribution.Version;
+import de.flapdoodle.embed.process.runtime.Network;
 import fr.ybonnel.simpleweb4j.test.SimpleWeb4jTest;
 import org.fluentlenium.core.domain.FluentList;
 import org.fluentlenium.core.domain.FluentWebElement;
@@ -10,6 +15,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static fr.ybonnel.simpleweb4j.SimpleWeb4j.stop;
@@ -17,22 +24,29 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class BeerWebTest extends SimpleWeb4jTest {
 
-    @Before
-    public void setup() {
-        Main.startServer(getPort(), false);
-        SimpleEntityManager.openSession().beginTransaction();
+    private MongodExecutable mongodExe;
+    private MongodProcess mongodProc;
 
-        for (Beer beerToDelete : Beer.simpleEntityManager.getAll()) {
-            Beer.simpleEntityManager.delete(beerToDelete.getId());
-        }
-        SimpleEntityManager.getCurrentSession().getTransaction().commit();
-        SimpleEntityManager.closeSession();
+    @Before
+    public void setup() throws IOException {
+        Random random = new Random();
+        int portMongo = Integer.getInteger("test.mongo.port", random.nextInt(10000) + 10000);
+        Main.startServer(getPort(), false, portMongo);
+
+        MongodStarter runtime = MongodStarter.getDefaultInstance();
+        mongodExe = runtime.prepare(new MongodConfigBuilder()
+                .version(Version.Main.PRODUCTION)
+                .net(new Net(portMongo, Network.localhostIsIPv6()))
+                .build());
+        mongodProc = mongodExe.start();
         goTo("/");
     }
 
     @After
     public void tearDown() {
         stop();
+        mongodProc.stop();
+        mongodExe.stop();
     }
 
 
