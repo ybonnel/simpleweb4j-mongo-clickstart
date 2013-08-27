@@ -23,15 +23,17 @@ public class MongoService {
 
     private static MongoClient mongoClient;
 
-    public static MongoClient getMongoClient() {
-        return mongoClient;
-    }
-
     public static void setMongoClient(MongoClient mongoClient) {
         MongoService.mongoClient = mongoClient;
     }
 
+    private static String dbName = "beer";
+
+    public static void setDbName(String dbName) {
+        MongoService.dbName = dbName;
+    }
+
     public static DB getDB() {
-        return mongoClient.getDB("beer");
+        return mongoClient.getDB(dbName);
     }
 }

@@ -1,6 +1,7 @@
 package com.mycompany;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mycompany.model.Beer;
 import com.mycompany.services.BeerRessource;
 import com.mycompany.services.MongoService;
@@ -49,7 +50,14 @@ public class Main {
             mongodProc = mongodExe.start();
         }
 
-        MongoService.setMongoClient(new MongoClient("localhost", portMongo));
+        if (isDev()) {
+            MongoService.setMongoClient(new MongoClient("localhost", portMongo));
+        } else {
+            String uriAsString = System.getProperty("MONGOHQ_URL_BEERS");
+            MongoClientURI uri = new MongoClientURI(uriAsString);
+            MongoService.setMongoClient(new MongoClient(uri));
+            MongoService.setDbName(uri.getDatabase());
+        }
 
         resource(new BeerRessource("/beer"));
         // Start the server.

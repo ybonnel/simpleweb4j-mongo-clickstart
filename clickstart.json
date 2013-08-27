@@ -16,10 +16,20 @@
         }
         
     },
-    "databases": [
+    "services": [
         {
-            "type": "mysql",
-            "alias": "beers"
+            "name": "mongohq",
+            "plan": "base",
+            "settings": {},
+            "resources": [
+                {
+                    "type": "mongodb",
+                    "alias": "beers",
+                    "settings": {
+                        "plan": "sandbox"
+                    }
+                }
+            ]
         }
     ],
     "build-with-jenkins": {
