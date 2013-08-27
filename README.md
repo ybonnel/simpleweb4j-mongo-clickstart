@@ -5,7 +5,7 @@ This clickstart setup a continuous deployment application based on SimpleWeb4j w
 Sample contains a complete Beer CRUD application with test for services (backend) and test for GUI (with fluentlenium and phantomjs).
 
 
-<a href="https://grandcentral.cloudbees.com/?CB_clickstart=https://raw.github.com/ybonnel/simpleweb4j--mongodb/clickstart/master/clickstart.json"><img src="https://d3ko533tu1ozfq.cloudfront.net/clickstart/deployInstantly.png"/></a>
+<a href="https://grandcentral.cloudbees.com/?CB_clickstart=https://raw.github.com/ybonnel/simpleweb4j-mongo-clickstart/master/clickstart.json"><img src="https://d3ko533tu1ozfq.cloudfront.net/clickstart/deployInstantly.png"/></a>
 
 
 If you don't have a cloudbees account:
