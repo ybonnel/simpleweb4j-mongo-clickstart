@@ -1,9 +1,9 @@
 {
-    "id": "simpleweb4j-clickstart",
-    "name": "SimpleWeb4j clickstart",
+    "id": "simpleweb4j-mongodb-clickstart",
+    "name": "SimpleWeb4j MongoDb clickstart",
     "source": "github",
-    "description" : "Deploy a SimpleWeb4j application with mongodb on CloudBees with continuous deployment (beta)",
-    "icon" : "https://secure.gravatar.com/avatar/acede2545a558df3b183683a0cf9b962?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",    
+    "description" : "SimpleWeb4j application connected to a MongoHQ database",
+    "icon" : "https://raw.github.com/ybonnel/SimpleWeb4j/master/images/logo-simpleweb4j-140.png",
 
     "supported-by" : "community",
     "order" : 0,
